@@ -1,0 +1,34 @@
+.ProjectWorksHeader {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 44px;
+  background: #27272a;
+  border-bottom: 1px solid #414144;
+  padding-left: 20px;
+}
+.ProjectWorksHeader__Item {
+  margin-right: 34px;
+  height: 100%;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #ffffff;
+}
+.ProjectWorksHeader__Item:nth-child() {
+  margin-right: 0px;
+}
+.PWHI_Active {
+    border-bottom: 2px solid #FFFFFF;
+}
+.ProjectWorksHeader__Item:hover{
+    border-bottom: 2px solid #FFFFFF;
+}
