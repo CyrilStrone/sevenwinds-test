@@ -1,0 +1,78 @@
+.ProjectWorksMenu {
+  width: 100%;
+  display: flex;
+  background: #27272a;
+  flex-direction: column;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+.ProjectWorksMenuHead {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 18px;
+  min-height: 44px;
+  border-bottom: 1px solid #414144;
+  border-right: 1px solid #414144;
+}
+.ProjectWorksMenuHead__Title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.ProjectWorksMenuHead__Title__Big {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #a1a1aa;
+}
+.ProjectWorksMenuHead__Title__Min {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #a1a1aa;
+}
+.ProjectWorksMenuHead img {
+  cursor: pointer;
+}
+.ProjectWorksMenuList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+}
+.ProjectWorksMenuList__Clouse {
+  height: 0px;
+  display: none;
+}
+.ListItem {
+  width: 100%;
+  display: flex;
+  height: 44px;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 22px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.ListItem_projectName {
+  margin-left: 16px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #ffffff;
+}
+.ListItem__Active {
+  background: #A1A1AA;
+}

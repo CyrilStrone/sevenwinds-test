@@ -1,0 +1,43 @@
+.ProjectWorksView {
+  background: #27272a;
+}
+.ProjectWorksViewHead {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ProjectWorksViewHead__ProjectName {
+  min-height: 44px;
+  display: flex;
+  border-bottom: 1px solid #414144;
+  align-items: center;
+  padding-left: 15px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #ffffff;
+  width: 100%;
+  box-sizing: border-box;
+}
+.ProjectWorksViewHead__ColumnnameArray {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    width: 95%;
+    border-bottom: 1px solid #414144;
+    box-sizing: border-box;
+}
+.ProjectWorksViewHead__ColumnnameArray__Item {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+    letter-spacing: 0.1px;
+    height: 40px;
+    color: #A1A1AA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
