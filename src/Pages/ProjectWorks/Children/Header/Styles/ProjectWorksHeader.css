@@ -8,6 +8,7 @@
   background: #27272a;
   border-bottom: 1px solid #414144;
   padding-left: 20px;
+  box-sizing: border-box;
 }
 .ProjectWorksHeader__Item {
   margin-right: 34px;

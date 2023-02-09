@@ -1,6 +1,8 @@
 .ProjectWorks{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    height: 100%;
+    grid-template-rows: 44px  auto ;
 }
 .ProjectWorksHeader{
     grid-column-start: 1;
@@ -12,11 +14,11 @@
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 2;
-    grid-row-end: 3
+    grid-row-end: auto
 }
 .ProjectWorksView{
     grid-column-start: 2;
     grid-column-end: 5;
     grid-row-start: 2;
-    grid-row-end: 3
+    grid-row-end: auto
 }
