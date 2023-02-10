@@ -3,7 +3,7 @@ import { ProjectWorksMenu } from "../Children/Menu/Organoids/ProjectWorksMenu";
 import { ProjectWorksView } from "../Children/ProjectWorksView/Organoids/ProjectWorksView";
 import { useEffect, useState } from "react";
 import "../Styles/ProjectWorks.css";
-import { $generalID, axiosInstance } from "../Logics/hooks";
+import { $generalID, $ListApi, axiosInstance, setListApi } from "../Logics/hooks";
 import { useStore } from "effector-react";
 export interface IProjectWorks {
   id?: number;
@@ -12,11 +12,12 @@ export interface IProjectWorks {
 export const ProjectWorks = (params: IProjectWorks) => {
   const [choise, setChoise] = useState<number>(2);
   const [choiseProject, setChoiseProject] = useState<number>(0);
-  const [listApi, setListApi] = useState<any>([]);
+  const ListApi = useStore($ListApi);
 
   const generalID = useStore($generalID);
 
   useEffect(() => {
+    console.log("kavo")
     setChoise(2);
     axiosInstance
       .get<{}>(`/v1/outlay-rows/entity/${generalID}/row/list`)
@@ -110,8 +111,8 @@ export const ProjectWorks = (params: IProjectWorks) => {
   };
 
   useEffect(() => {
-    console.log("listApi:", listApi);
-  }, [listApi]);
+    console.log("ListApi:", ListApi);
+  }, [ListApi]);
 
   return (
     <div className="ProjectWorks">
@@ -122,28 +123,26 @@ export const ProjectWorks = (params: IProjectWorks) => {
         setChoiseProject={setChoiseProject}
       />
       <ProjectWorksView
-        listApi={listApi}
         choise={choise}
         choiseProject={choiseProject}
         setChoiseProject={setChoiseProject}
-        setListApi={setListApi}
       />
       <div
         onClick={() => {
-          // rowCreate({
-          //   equipmentCosts: 0,
-          //   estimatedProfit: 0,
-          //   overheads: 0,
-          //   parentId: 43442,
-          //   rowName: "Статья работы № 2",
-          //   salary: 0,
+          rowCreate({
+            equipmentCosts: 0,
+            estimatedProfit: 0,
+            overheads: 0,
+            parentId: null,
+            rowName: "Чучуча 2",
+            salary: 0,
 
-          //   machineOperatorSalary:0,
-          //   mainCosts:0,
-          //   materials:0,
-          //   mimExploitation:0,
-          //   supportCosts:0
-          // });
+            machineOperatorSalary:0,
+            mainCosts:0,
+            materials:0,
+            mimExploitation:0,
+            supportCosts:0
+          });
         }}
       >
         чочо

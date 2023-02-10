@@ -15,3 +15,8 @@ $generalID.on(setgeneralID, (_, val) => val);
 export const $generalRowName = createStore<string>("7c6c24dc-4b6d-4bd3-8f09-52bdf4172e56");
 export const setgeneralRowName = createEvent<string>();
 $generalRowName.on(setgeneralRowName, (_, val) => val);
+
+export const $ListApi = createStore<any>([]);
+export const setListApi = createEvent<any>();
+$ListApi.on(setListApi, (_, val) => val);
+

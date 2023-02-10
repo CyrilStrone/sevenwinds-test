@@ -30,27 +30,27 @@
 }
 .ProjectWorksViewHead__ColumnnameArray__Item {
   font-family: "Roboto";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 130%;
-    letter-spacing: 0.1px;
-    height: 40px;
-    color: #a1a1aa;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 130%;
+  letter-spacing: 0.1px;
+  height: 40px;
+  color: #a1a1aa;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
-.ProjectWorksViewListItem {
+.ProjectWorksView__List {
   display: grid;
-  /* grid-template-columns: repeat(6, 1fr); */
-  grid-template-columns: auto repeat(5, 1fr);
+  grid-template-columns: auto auto auto auto auto auto;
   width: 100%;
   box-sizing: border-box;
   grid-column-start: 1;
   grid-column-end: 6;
-  width: 95%;
-  height: 60px;
+}
+.ProjectWorksView__List__item {
+  height: 60px !important;
 }
 .ProjectWorksViewListItem__item {
   font-family: "Roboto";
@@ -66,20 +66,21 @@
   justify-content: flex-start;
   border-bottom: 1px solid #414144;
 }
-.ProjectWorksViewListItem__item input{
-
+.ProjectWorksViewListItem__item input {
   border: 1px solid #414144;
   border-radius: 6px;
   background: transparent;
-  color: #71717A;
+  color: #71717a;
   outline: none;
   height: 26px;
-  margin-left: -10px;
-  padding-left: 9.5px;
+  padding-left: 10px;
   font-size: 14.5px;
-  line-height: 130%;
-  margin-bottom: 0.2px;
-  letter-spacing: 0.1px;
+  box-sizing: content-box;
+}
+.ProjectWorksViewListItem__item__input__style {
+  border: none !important;
+  color: #ffffff !important;
+  border: 1px solid transparent !important;
 }
 .ProjectWorksViewListItem__item__Line {
   font-family: "Roboto";
@@ -96,6 +97,25 @@
   border-bottom: 1px solid #414144;
   min-width: 80px;
 }
+.ProjectWorksView__List__item:nth-child(6n+6){
+  margin-right: 20px;
+}
+.ProjectWorksView__List__item:nth-child(6n+1){
+  margin-left: 20px;
+}
+.ListItamTop {
+  display: flex;
+  justify-content: flex-start;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #a1a1aa;
+  border-bottom: 1px solid #414144;
+  height: 40px;
+  align-items: center;
+  padding-left: 8px;
+}
 .ProjectWorksViewListItem__item__Level {
   font-family: "Roboto";
   font-style: normal;
@@ -110,13 +130,8 @@
   justify-content: center;
   border-bottom: 1px solid #414144;
 }
-.ProjectWorksView__List {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 .ProjectWorksViewListItem__item__Line__Block {
-  width:max-content;
+  width: 48px;
   height: 28px;
   border-radius: 6px;
   position: relative;
@@ -126,50 +141,28 @@
   padding: 6px;
   box-sizing: border-box;
 }
-.ProjectWorksViewListItem__item__Line__Block__Icon__Add{
+.ProjectWorksViewListItem__item__Line__Block__Icon__Add {
   margin-right: 6px;
   cursor: pointer;
 }
-.ProjectWorksViewListItem__item__Line__Block__Icon{
+.ProjectWorksViewListItem__item__Line__Block__Icon__Add__Line{
+  height: 2px;
+    width: 13px;
+    position: absolute;
+    background-color: #C6C6C6;
+    left: -7px;
+    top: 13px;
+}
+.ProjectWorksViewListItem__item__Line__Block__Icon {
   cursor: pointer;
 }
-.ProjectWorksViewListItem__item__Line__Block__Style-Black{
+.ProjectWorksViewListItem__item__Line__Block__Style-Black {
   background: #414144;
 }
 .ProjectWorksViewListItem__item__Line__Block__Line {
   position: absolute;
   z-index: 2;
-}
-.Level__Line__0{
-  top: 23px;
-  left: 13px;
-}
-.Level__Line__1{
-  top: 74px;
-  left: 13px;
-  height: 60px;
-}
-.Level__Line__2{
-  top: 120px;
-  height: 60px;  
-}
-.Level__Line__3{
-  top: 120px;
-  height: 60px;
-}
-.Level__0{
-  margin-left: 0px;
-}
-.Level__1{
-  margin-left: 18px;
-
-}
-.Level__2{
-  margin-left: 36px;
-
-}
-.Level__3{
-  margin-left: 44px;
-
+  width: 2px;
+  background-color: #C6C6C6;
 }
 
