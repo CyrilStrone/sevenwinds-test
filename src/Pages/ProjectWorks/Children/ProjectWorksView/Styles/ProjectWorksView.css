@@ -65,6 +65,8 @@
   align-items: center;
   justify-content: flex-start;
   border-bottom: 1px solid #414144;
+  height: 80px;
+  box-sizing: border-box;
 }
 .ProjectWorksViewListItem__item input {
   border: 1px solid #414144;
@@ -96,6 +98,7 @@
   justify-content: flex-start;
   border-bottom: 1px solid #414144;
   min-width: 80px;
+  box-sizing: border-box;
 }
 .ProjectWorksView__List__item:nth-child(6n+6){
   margin-right: 20px;
@@ -132,14 +135,12 @@
 }
 .ProjectWorksViewListItem__item__Line__Block {
   width: 48px;
-  height: 28px;
   border-radius: 6px;
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 6px;
   box-sizing: border-box;
+  position: relative;
 }
 .ProjectWorksViewListItem__item__Line__Block__Icon__Add {
   margin-right: 6px;
@@ -150,8 +151,8 @@
     width: 13px;
     position: absolute;
     background-color: #C6C6C6;
-    left: -7px;
-    top: 13px;
+    left: -12px;
+    top: 8px;
 }
 .ProjectWorksViewListItem__item__Line__Block__Icon {
   cursor: pointer;
@@ -166,3 +167,9 @@
   background-color: #C6C6C6;
 }
 
+.ProjectWorksViewListItem__item__Line__Block__Icon__Block{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}

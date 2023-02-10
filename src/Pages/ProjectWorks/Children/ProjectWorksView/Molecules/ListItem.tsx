@@ -177,7 +177,11 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
               let FakeArrayChanged: any = [];
               //@ts-ignore
               let newObject: any = res.data.current;
-              newObject.child = params.child;
+              if (params.child.length !== 0) {
+                newObject.child = params.child;
+              } else {
+                newObject.child = [];
+              }
               ListApi.map((e: any) => {
                 const newData = objTraverse.findAndModifyAll(
                   e,
@@ -191,6 +195,7 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
                   FakeArrayCurrent.push(e);
                 }
               });
+              setListApi(FakeArrayCurrent);
               //@ts-ignore
               if (res.data.changed.length !== 0) {
                 //@ts-ignore
@@ -217,13 +222,10 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
                       FakeArrayChanged.push(e2);
                     }
                     setListApi(
-                      FakeArrayChanged.slice(
-                        0,
-                        //@ts-ignore
-                        FakeArrayChanged.length / res.data.changed.length
-                      )
+                      FakeArrayChanged.slice(0, FakeArrayChanged.length / 2)
                     );
                   });
+
                 });
               }
               setcheckDoubleClick(false);
@@ -296,6 +298,7 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
                 setCheckHover(false);
               }}
             >
+              <div className="ProjectWorksViewListItem__item__Line__Block__Icon__Block">
               <img
                 src={Add}
                 alt="Add"
@@ -307,6 +310,7 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
               {params.parentId && (
                 <div className="ProjectWorksViewListItem__item__Line__Block__Icon__Add__Line"></div>
               )}
+              </div>
               {checkHover && (
                 <img
                   src={Delete}
@@ -324,9 +328,9 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
                   <div
                     key={e.id}
                     style={{
-                      height: `${58 * deeplevel}px`,
-                      top: `${22}px`,
-                      left: `12px`,
+                      height: `${60 * deeplevel -6 }px`,
+                      top: `${16}px`,
+                      left: `${8 }px`,
                     }}
                     className={`ProjectWorksViewListItem__item__Line__Block__Line`}
                   ></div>
