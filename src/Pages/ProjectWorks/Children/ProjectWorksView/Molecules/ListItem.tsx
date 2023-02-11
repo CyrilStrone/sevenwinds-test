@@ -9,52 +9,39 @@ import {
 } from "../../../Logics/hooks";
 import { useStore } from "effector-react";
 export interface IProjectWorksViewListItem {
-  child: IProjectWorksViewListItem[];
-  equipmentCosts: number;
-  estimatedProfit: number;
-  id: number;
-  machineOperatorSalary: number;
-  mainCosts: number;
-  materials: number;
-  mimExploitation: number;
-  overheads: number;
-  rowName: string;
-  salary: number;
-  supportCosts: number;
-  total: number;
-  parentId: number | null;
   linelevel: number;
-  checkDoubleClickID: number;
+  parentId: number | null;
   itemobject: any;
+  checkDoubleClickID: number;
   setcheckDoubleClickID: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
-  let level = 0;
-
+  let objTraverse = require("obj-traverse/lib/obj-traverse");
   const [checkHover, setCheckHover] = useState<boolean>(false);
   const [checkDoubleClick, setcheckDoubleClick] = useState<boolean>(false);
-  const [deeplevel, setdeeplevel] = useState<any>(0);
-
+  const [deeplevel, setdeeplevel] = useState<any>(null);
+  const [lastdeeplevel, setlastdeeplevel] = useState<any>(null);
   const [TableInfo, setTableInfo] = useState<any>(null);
   const generalID = useStore($generalID);
   const ListApi = useStore($ListApi);
 
-
   useEffect(() => {
     setTableInfo({
-      rowName: params.rowName,
-      salary: params.salary,
-      equipmentCosts: params.equipmentCosts,
-      overheads: params.overheads,
-      estimatedProfit: params.estimatedProfit,
-      machineOperatorSalary: params.machineOperatorSalary,
-      mainCosts: params.mainCosts,
-      materials: params.materials,
-      mimExploitation: params.mimExploitation,
-      supportCosts: params.supportCosts,
+      rowName: params.itemobject.rowName,
+      salary: params.itemobject.salary,
+      equipmentCosts: params.itemobject.equipmentCosts,
+      overheads: params.itemobject.overheads,
+      estimatedProfit: params.itemobject.estimatedProfit,
+      machineOperatorSalary: params.itemobject.machineOperatorSalary,
+      mainCosts: params.itemobject.mainCosts,
+      materials: params.itemobject.materials,
+      mimExploitation: params.itemobject.mimExploitation,
+      supportCosts: params.itemobject.supportCosts,
+      child: params.itemobject.child,
     });
   }, []);
+
   const addTableInfo = (loacalparams: any) => {
     axiosInstance
       .post<{}>(`/v1/outlay-rows/entity/${generalID}/row/create`, {
@@ -64,7 +51,6 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
         parentId: loacalparams,
         rowName: "Название",
         salary: 0,
-
         machineOperatorSalary: 0,
         mainCosts: 0,
         materials: 0,
@@ -75,25 +61,23 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
         let FakeArrayCurrent: any = [];
         //@ts-ignore
         let newObject = res.data.current;
+        let newchild = params.itemobject.child;
         newObject.child = [];
-        newObject.parentId = loacalparams;
-        let child = params.child;
-        child.push(newObject);
+        newObject.parentId = params.itemobject;
+        newchild.push(newObject);
         //@ts-ignore
         params.setcheckDoubleClickID(res.data.current.id);
-        var objTraverse = require("obj-traverse/lib/obj-traverse");
         ListApi.map((e: any) => {
-          const newData = objTraverse.findAndModifyAll(
+          const newData = objTraverse.findAndModifyFirst(
             e,
             "child",
-            { id: params.id },
+            { id: params.itemobject.id },
             {
               equipmentCosts: params.itemobject.equipmentCosts,
               estimatedProfit: params.itemobject.estimatedProfit,
               overheads: params.itemobject.overheads,
               rowName: params.itemobject.rowName,
               salary: params.itemobject.salary,
-              child: params.child,
               machineOperatorSalary: params.itemobject.machineOperatorSalary,
               mainCosts: params.itemobject.mainCosts,
               materials: params.itemobject.materials,
@@ -101,16 +85,15 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
               supportCosts: params.itemobject.supportCosts,
               total: params.itemobject.total,
               id: params.itemobject.id,
+              child: newchild,
             }
           );
-          console.log("newData", newData);
           if (newData) {
             FakeArrayCurrent.push(newData);
           } else {
             FakeArrayCurrent.push(e);
           }
         });
-        console.log("FakeArrayCurrent", FakeArrayCurrent);
         setListApi(FakeArrayCurrent);
       });
   };
@@ -122,30 +105,26 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
         {}
       )
       .then((res) => {
-        var objTraverse = require("obj-traverse/lib/obj-traverse");
-        console.log("rowDelete", res.data);
         let FakeArrayCurrent: any = [];
-        ListApi.map((e: any) => {
-          let newData = objTraverse.findAndDeleteFirst(e, "child", {
-            id: loacalparams,
-          });
-          if (!newData) {
-            newData = objTraverse.findAndDeleteAll(e, "child", {
+        console.log("loacalparams", loacalparams);
+        if (params.parentId) {
+          ListApi.map((e: any) => {
+            let newData = objTraverse.findAndDeleteFirst(e, "child", {
               id: loacalparams,
             });
-          }
-          if (newData) {
-            FakeArrayCurrent.push(newData);
-          } else {
-            FakeArrayCurrent.push(e);
-          }
-        });
-        FakeArrayCurrent = FakeArrayCurrent.filter(
-          (element: any) => element.id
-        );
-        setListApi(FakeArrayCurrent);
+            if (newData) {
+              FakeArrayCurrent.push(newData);
+            } else {
+              FakeArrayCurrent.push(e);
+            }
+          });
+          setListApi(FakeArrayCurrent.filter((element: any) => element.id));
+        } else {
+          setListApi([]);
+        }
       });
   };
+
   const handleTableInfo = (loacalparams: any) => {
     if (loacalparams.type !== "keydown" || loacalparams.event.key !== "Enter") {
       let FakeArray: any = Object.assign([], TableInfo);
@@ -153,16 +132,16 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
       setTableInfo(FakeArray);
     } else {
       if (loacalparams.event.key == "Enter") {
-        if (params.checkDoubleClickID == params.id) {
+        if (params.checkDoubleClickID == params.itemobject.id) {
           axiosInstance
             .post<{}>(
-              `/v1/outlay-rows/entity/${generalID}/row/${params.id}/update`,
+              `/v1/outlay-rows/entity/${generalID}/row/${params.itemobject.id}/update`,
               {
-                machineOperatorSalary: params.machineOperatorSalary,
-                mainCosts: params.mainCosts,
-                materials: params.materials,
-                mimExploitation: params.mimExploitation,
-                supportCosts: params.supportCosts,
+                machineOperatorSalary: params.itemobject.machineOperatorSalary,
+                mainCosts: params.itemobject.mainCosts,
+                materials: params.itemobject.materials,
+                mimExploitation: params.itemobject.mimExploitation,
+                supportCosts: params.itemobject.supportCosts,
 
                 equipmentCosts: Number(TableInfo.equipmentCosts),
                 estimatedProfit: Number(TableInfo.estimatedProfit),
@@ -172,21 +151,16 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
               }
             )
             .then((res) => {
-              var objTraverse = require("obj-traverse/lib/obj-traverse");
               let FakeArrayCurrent: any = [];
-              let FakeArrayChanged: any = [];
+
               //@ts-ignore
               let newObject: any = res.data.current;
-              if (params.child.length !== 0) {
-                newObject.child = params.child;
-              } else {
-                newObject.child = [];
-              }
+              newObject.child = params.itemobject.child;
               ListApi.map((e: any) => {
                 const newData = objTraverse.findAndModifyAll(
                   e,
                   "child",
-                  { id: params.id },
+                  { id: params.itemobject.id },
                   newObject
                 );
                 if (newData) {
@@ -199,95 +173,122 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
               //@ts-ignore
               if (res.data.changed.length !== 0) {
                 //@ts-ignore
-                res.data.changed.reverse().map((e: any) => {
-                  let newObjectChanged: any = e;
-                  FakeArrayCurrent.map((e2: any) => {
-                    const newData = objTraverse.findAll(e2, "child", {
+                res.data.changed.map((e: any) => {
+                  let FakeArrayChanged: any = [];
+                  let newObjectGeneral = e;
+                  let newObject = {};
+
+                  ListApi.map((e2: any) => {
+                    newObject = objTraverse.findAll(e2, "child", {
                       id: e.id,
-                    });
-                    if (newData.length !== 0) {
-                      newObjectChanged.child = newData[0].child;
-                    }
+                    })[0];
                   });
-                  FakeArrayCurrent.map((e2: any, id: any) => {
+                  //@ts-ignore
+                  if (newObject.child) {
+                    //@ts-ignore
+                    newObjectGeneral.child = newObject.child;
+                  } else {
+                    newObjectGeneral.child = [];
+                  }
+                  ListApi.map((e2: any) => {
                     const newData = objTraverse.findAndModifyAll(
                       e2,
                       "child",
-                      { id: newObjectChanged.id },
-                      newObjectChanged
+                      { id: newObjectGeneral.id },
+                      newObjectGeneral
                     );
                     if (newData) {
                       FakeArrayChanged.push(newData);
                     } else {
-                      FakeArrayChanged.push(e2);
+                      FakeArrayChanged.push(e);
                     }
-                    setListApi(
-                      FakeArrayChanged.slice(0, FakeArrayChanged.length / 2)
-                    );
                   });
-
+                  setListApi(FakeArrayChanged);
                 });
               }
+
               setcheckDoubleClick(false);
             });
         }
       }
     }
   };
+
   useEffect(() => {
-    if (params.checkDoubleClickID === params.id) {
+    setTableInfo({
+      rowName: params.itemobject.rowName,
+      salary: params.itemobject.salary,
+      equipmentCosts: params.itemobject.equipmentCosts,
+      overheads: params.itemobject.overheads,
+      estimatedProfit: params.itemobject.estimatedProfit,
+      machineOperatorSalary: params.itemobject.machineOperatorSalary,
+      mainCosts: params.itemobject.mainCosts,
+      materials: params.itemobject.materials,
+      mimExploitation: params.itemobject.mimExploitation,
+      supportCosts: params.itemobject.supportCosts,
+      child: params.itemobject.child,
+    });
+  }, [ListApi]);
+
+  useEffect(() => {
+    if (params.checkDoubleClickID === params.itemobject.id) {
       setcheckDoubleClick(true);
+      setTableInfo({
+        rowName: params.itemobject.rowName,
+        salary: params.itemobject.salary,
+        equipmentCosts: params.itemobject.equipmentCosts,
+        overheads: params.itemobject.overheads,
+        estimatedProfit: params.itemobject.estimatedProfit,
+        machineOperatorSalary: params.itemobject.machineOperatorSalary,
+        mainCosts: params.itemobject.mainCosts,
+        materials: params.itemobject.materials,
+        mimExploitation: params.itemobject.mimExploitation,
+        supportCosts: params.itemobject.supportCosts,
+        child: params.itemobject.child,
+      });
     } else {
       setcheckDoubleClick(false);
     }
   }, [params.checkDoubleClickID]);
-  const getDeep = (theObject: any) => {
-    if(theObject.child.length !== 0){
-      level = level + theObject.child.length;
-    }
-    setdeeplevel(level);
-    console.log("theObject.total", theObject.total);
-    if (theObject.child.length !== 0) {
-      if (theObject.child.length !== 1) {
-      theObject.child.map((e: any) => {
-        getDeep(e);
-      });
-      }else{
-    
-    setdeeplevel(level);
-      }
-    }
-  };
 
-  useEffect(() => {
-    if (params.checkDoubleClickID === params.id) {
-      setTableInfo({
-        rowName: params.rowName,
-        salary: params.salary,
-        equipmentCosts: params.equipmentCosts,
-        overheads: params.overheads,
-        estimatedProfit: params.estimatedProfit,
-        machineOperatorSalary: params.machineOperatorSalary,
-        mainCosts: params.mainCosts,
-        materials: params.materials,
-        mimExploitation: params.mimExploitation,
-        supportCosts: params.supportCosts,
-      });
-    }
-  }, [params.checkDoubleClickID]);
+  let level = 0;
+  let lastlevel = 0;
+  
   useEffect(() => {
     level = 0;
-    getDeep(params.itemobject);
+    lastlevel = 0;
+    if (params.itemobject.child.length !== 0) {
+      getDeep(params.itemobject);
+      getlastDeep(params.itemobject.child[params.itemobject.child.length - 1]);
+    }
   }, [ListApi]);
+
+  const getDeep = (arr: any) => {
+    arr.child.map((e: any, id: any) => {
+      level = level + 1;
+      setdeeplevel(level);
+      getDeep(e);
+    });
+  };
+
+  const getlastDeep = (arr: any) => {
+    lastlevel = lastlevel + arr.child.length;
+    setlastdeeplevel(lastlevel);
+    arr.child.map((e: any) => {
+      getlastDeep(e);
+    });
+  };
+
   return (
     TableInfo && (
       <>
         <>
           <div className="ProjectWorksViewListItem__item__Line ProjectWorksView__List__item">
             <div
-              className={`ProjectWorksViewListItem__item__Line__Block Level__${
-                params.linelevel
-              } ${
+              style={{
+                marginLeft: `${20 * params.linelevel}px`,
+              }}
+              className={`ProjectWorksViewListItem__item__Line__Block } ${
                 checkHover &&
                 "ProjectWorksViewListItem__item__Line__Block__Style-Black"
               }`}
@@ -299,17 +300,17 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
               }}
             >
               <div className="ProjectWorksViewListItem__item__Line__Block__Icon__Block">
-              <img
-                src={Add}
-                alt="Add"
-                className="ProjectWorksViewListItem__item__Line__Block__Icon__Add"
-                onClick={() => {
-                  addTableInfo(params.id);
-                }}
-              />
-              {params.parentId && (
-                <div className="ProjectWorksViewListItem__item__Line__Block__Icon__Add__Line"></div>
-              )}
+                <img
+                  src={Add}
+                  alt="Add"
+                  className="ProjectWorksViewListItem__item__Line__Block__Icon__Add"
+                  onClick={() => {
+                    addTableInfo(params.itemobject.id);
+                  }}
+                />
+                {params.parentId && (
+                  <div className="ProjectWorksViewListItem__item__Line__Block__Icon__Add__Line"></div>
+                )}
               </div>
               {checkHover && (
                 <img
@@ -317,20 +318,20 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
                   alt="Delete"
                   className="ProjectWorksViewListItem__item__Line__Block__Icon"
                   onClick={() => {
-                    deleteTableInfo(params.id);
+                    deleteTableInfo(params.itemobject.id);
                   }}
                 />
               )}
 
-              {params.child &&
-                params.child.length !== 0 &&
-                params.child.map((e: any, id: any) => (
+              {params.itemobject.child &&
+                params.itemobject.child.length !== 0 &&
+                params.itemobject.child.map((e: any, id: any) => (
                   <div
                     key={e.id}
                     style={{
-                      height: `${60 * deeplevel -6 }px`,
+                      height: `${60 * (deeplevel - lastdeeplevel) - 0}px`,
                       top: `${16}px`,
-                      left: `${8 }px`,
+                      left: `${12}px`,
                     }}
                     className={`ProjectWorksViewListItem__item__Line__Block__Line`}
                   ></div>
@@ -339,8 +340,8 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
           </div>
           <div
             onDoubleClick={() =>
-              params.checkDoubleClickID !== params.id
-                ? params.setcheckDoubleClickID(params.id)
+              params.checkDoubleClickID !== params.itemobject.id
+                ? params.setcheckDoubleClickID(params.itemobject.id)
                 : setcheckDoubleClick(!checkDoubleClick)
             }
             className="ProjectWorksViewListItem__item ProjectWorksView__List__item"
@@ -348,7 +349,8 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
             {!checkDoubleClick ? (
               <input
                 type="text"
-                defaultValue={TableInfo.rowName}
+                value={TableInfo.rowName}
+                onChange={() => {}}
                 className="ProjectWorksViewListItem__item__input__style"
               />
             ) : (
@@ -370,8 +372,8 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
           </div>
           <div
             onDoubleClick={() =>
-              params.checkDoubleClickID !== params.id
-                ? params.setcheckDoubleClickID(params.id)
+              params.checkDoubleClickID !== params.itemobject.id
+                ? params.setcheckDoubleClickID(params.itemobject.id)
                 : setcheckDoubleClick(!checkDoubleClick)
             }
             className="ProjectWorksViewListItem__item ProjectWorksView__List__item"
@@ -379,7 +381,8 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
             {!checkDoubleClick ? (
               <input
                 type="text"
-                defaultValue={TableInfo.salary}
+                value={TableInfo.salary}
+                onChange={() => {}}
                 className="ProjectWorksViewListItem__item__input__style"
               />
             ) : (
@@ -401,8 +404,8 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
           </div>
           <div
             onDoubleClick={() =>
-              params.checkDoubleClickID !== params.id
-                ? params.setcheckDoubleClickID(params.id)
+              params.checkDoubleClickID !== params.itemobject.id
+                ? params.setcheckDoubleClickID(params.itemobject.id)
                 : setcheckDoubleClick(!checkDoubleClick)
             }
             className="ProjectWorksViewListItem__item ProjectWorksView__List__item"
@@ -410,7 +413,8 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
             {!checkDoubleClick ? (
               <input
                 type="text"
-                defaultValue={TableInfo.equipmentCosts}
+                value={TableInfo.equipmentCosts}
+                onChange={() => {}}
                 className="ProjectWorksViewListItem__item__input__style"
               />
             ) : (
@@ -432,8 +436,8 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
           </div>
           <div
             onDoubleClick={() =>
-              params.checkDoubleClickID !== params.id
-                ? params.setcheckDoubleClickID(params.id)
+              params.checkDoubleClickID !== params.itemobject.id
+                ? params.setcheckDoubleClickID(params.itemobject.id)
                 : setcheckDoubleClick(!checkDoubleClick)
             }
             className="ProjectWorksViewListItem__item ProjectWorksView__List__item"
@@ -441,7 +445,8 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
             {!checkDoubleClick ? (
               <input
                 type="text"
-                defaultValue={TableInfo.overheads}
+                value={TableInfo.overheads}
+                onChange={() => {}}
                 className="ProjectWorksViewListItem__item__input__style"
               />
             ) : (
@@ -463,8 +468,8 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
           </div>
           <div
             onDoubleClick={() =>
-              params.checkDoubleClickID !== params.id
-                ? params.setcheckDoubleClickID(params.id)
+              params.checkDoubleClickID !== params.itemobject.id
+                ? params.setcheckDoubleClickID(params.itemobject.id)
                 : setcheckDoubleClick(!checkDoubleClick)
             }
             className="ProjectWorksViewListItem__item ProjectWorksView__List__item"
@@ -472,7 +477,8 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
             {!checkDoubleClick ? (
               <input
                 type="text"
-                defaultValue={TableInfo.estimatedProfit}
+                value={TableInfo.estimatedProfit}
+                onChange={() => {}}
                 className="ProjectWorksViewListItem__item__input__style"
               />
             ) : (
@@ -493,27 +499,13 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
             )}
           </div>
         </>
-        {params.child &&
-          params.child.length !== 0 &&
-          params.child.map((e: any) => (
+        {params.itemobject.child.length !== 0 &&
+          params.itemobject.child.map((e: any) => (
             <ProjectWorksViewListItem
               key={e.id}
               setcheckDoubleClickID={params.setcheckDoubleClickID}
               checkDoubleClickID={params.checkDoubleClickID}
-              child={e.child}
-              equipmentCosts={e.equipmentCosts}
-              estimatedProfit={e.estimatedProfit}
-              id={e.id}
-              machineOperatorSalary={e.machineOperatorSalary}
-              mainCosts={e.mainCosts}
-              materials={e.materials}
-              mimExploitation={e.mimExploitation}
-              overheads={e.overheads}
-              rowName={e.rowName}
-              salary={e.salary}
-              supportCosts={e.supportCosts}
-              total={e.total}
-              parentId={params.id}
+              parentId={params.itemobject.id}
               linelevel={params.linelevel + 1}
               itemobject={e}
             />

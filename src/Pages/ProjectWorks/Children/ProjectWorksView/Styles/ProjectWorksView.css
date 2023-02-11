@@ -141,17 +141,21 @@
   justify-content: flex-start;
   box-sizing: border-box;
   position: relative;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 .ProjectWorksViewListItem__item__Line__Block__Icon__Add {
   margin-right: 6px;
+  padding-left: 6px;
   cursor: pointer;
+  z-index: 2;
 }
 .ProjectWorksViewListItem__item__Line__Block__Icon__Add__Line{
-  height: 2px;
+    height: 2px;
     width: 13px;
     position: absolute;
     background-color: #C6C6C6;
-    left: -12px;
+    left: -8px;
     top: 8px;
 }
 .ProjectWorksViewListItem__item__Line__Block__Icon {
@@ -159,10 +163,10 @@
 }
 .ProjectWorksViewListItem__item__Line__Block__Style-Black {
   background: #414144;
+  box-sizing: border-box;
 }
 .ProjectWorksViewListItem__item__Line__Block__Line {
   position: absolute;
-  z-index: 2;
   width: 2px;
   background-color: #C6C6C6;
 }
