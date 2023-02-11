@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.4e244cf2.css",
-    "main.js": "/static/js/main.1a07da42.js",
-    "static/js/787.99815d38.chunk.js": "/static/js/787.99815d38.chunk.js",
-    "static/media/Delete.svg": "/static/media/Delete.14eb749d6e247b1f14acb3bc4657de15.svg",
-    "index.html": "/index.html",
-    "static/media/Add.svg": "/static/media/Add.5ffca8b5be3d048da481c5209f2d0d7a.svg",
-    "static/media/Project.svg": "/static/media/Project.f382575b9a0c17a56e877da560b8625a.svg",
-    "static/media/Menu.svg": "/static/media/Menu.11f97507b87f3ac10b1a93209dd21433.svg",
-    "static/media/ArrowToUp.svg": "/static/media/ArrowToUp.8dc59129184d42aff20402a45612196f.svg",
-    "static/media/ArrowToDown.svg": "/static/media/ArrowToDown.05a385524ea9ed44d8173aba2b785a1e.svg",
-    "static/media/Back.svg": "/static/media/Back.937d6be56823fddadf07aec5d199d7d2.svg",
-    "main.4e244cf2.css.map": "/static/css/main.4e244cf2.css.map",
-    "main.1a07da42.js.map": "/static/js/main.1a07da42.js.map",
-    "787.99815d38.chunk.js.map": "/static/js/787.99815d38.chunk.js.map"
+    "main.css": "/SevenWinds_Test/static/css/main.4e244cf2.css",
+    "main.js": "/SevenWinds_Test/static/js/main.be82cb22.js",
+    "static/js/787.99815d38.chunk.js": "/SevenWinds_Test/static/js/787.99815d38.chunk.js",
+    "static/media/Delete.svg": "/SevenWinds_Test/static/media/Delete.14eb749d6e247b1f14acb3bc4657de15.svg",
+    "index.html": "/SevenWinds_Test/index.html",
+    "static/media/Add.svg": "/SevenWinds_Test/static/media/Add.5ffca8b5be3d048da481c5209f2d0d7a.svg",
+    "static/media/Project.svg": "/SevenWinds_Test/static/media/Project.f382575b9a0c17a56e877da560b8625a.svg",
+    "static/media/Menu.svg": "/SevenWinds_Test/static/media/Menu.11f97507b87f3ac10b1a93209dd21433.svg",
+    "static/media/ArrowToUp.svg": "/SevenWinds_Test/static/media/ArrowToUp.8dc59129184d42aff20402a45612196f.svg",
+    "static/media/ArrowToDown.svg": "/SevenWinds_Test/static/media/ArrowToDown.05a385524ea9ed44d8173aba2b785a1e.svg",
+    "static/media/Back.svg": "/SevenWinds_Test/static/media/Back.937d6be56823fddadf07aec5d199d7d2.svg",
+    "main.4e244cf2.css.map": "/SevenWinds_Test/static/css/main.4e244cf2.css.map",
+    "main.be82cb22.js.map": "/SevenWinds_Test/static/js/main.be82cb22.js.map",
+    "787.99815d38.chunk.js.map": "/SevenWinds_Test/static/js/787.99815d38.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4e244cf2.css",
-    "static/js/main.1a07da42.js"
+    "static/js/main.be82cb22.js"
   ]
 }
