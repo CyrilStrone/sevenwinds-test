@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/SevenWinds_Test/static/css/main.4e244cf2.css",
-    "main.js": "/SevenWinds_Test/static/js/main.be82cb22.js",
+    "main.js": "/SevenWinds_Test/static/js/main.84b0a58a.js",
     "static/js/787.99815d38.chunk.js": "/SevenWinds_Test/static/js/787.99815d38.chunk.js",
     "static/media/Delete.svg": "/SevenWinds_Test/static/media/Delete.14eb749d6e247b1f14acb3bc4657de15.svg",
     "index.html": "/SevenWinds_Test/index.html",
@@ -12,11 +12,11 @@
     "static/media/ArrowToDown.svg": "/SevenWinds_Test/static/media/ArrowToDown.05a385524ea9ed44d8173aba2b785a1e.svg",
     "static/media/Back.svg": "/SevenWinds_Test/static/media/Back.937d6be56823fddadf07aec5d199d7d2.svg",
     "main.4e244cf2.css.map": "/SevenWinds_Test/static/css/main.4e244cf2.css.map",
-    "main.be82cb22.js.map": "/SevenWinds_Test/static/js/main.be82cb22.js.map",
+    "main.84b0a58a.js.map": "/SevenWinds_Test/static/js/main.84b0a58a.js.map",
     "787.99815d38.chunk.js.map": "/SevenWinds_Test/static/js/787.99815d38.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4e244cf2.css",
-    "static/js/main.be82cb22.js"
+    "static/js/main.84b0a58a.js"
   ]
 }
