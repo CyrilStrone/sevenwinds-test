@@ -17,6 +17,7 @@
 Ссылка на API: [http://185.244.172.108:8081/](http://185.244.172.108:8081/)
 Документация по API: [http://185.244.172.108:8081/swagger-ui/index.html?url=/openapi.json#/](http://185.244.172.108:8081/swagger-ui/index.html?url=/openapi.json#/)
 
+[Figma](https://www.figma.com/embed?embed_host=notion&url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fyyls8AT1soKQ3Qpfl2Y3Nz%2F%25D0%259C%25D0%25B0%25D0%25BA%25D0%25B5%25D1%2582-%25D0%25B4%25D0%25BB%25D1%258F-%25D1%2582%25D0%25B5%25D1%2581%25D1%2582%25D0%25BE%25D0%25B2%25D0%25BE%25D0%25B3%25D0%25BE%3Fnode-id%3D0%253A1)
 
 ---
 
