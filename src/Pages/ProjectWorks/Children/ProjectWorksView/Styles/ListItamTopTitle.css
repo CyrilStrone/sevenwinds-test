@@ -1,0 +1,13 @@
+.ProjectWorksViewListItemTitle {
+  display: flex;
+  justify-content: flex-start;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #a1a1aa;
+  border-bottom: 1px solid #414144;
+  height: 40px;
+  align-items: center;
+  padding-left: 8px;
+}

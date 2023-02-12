@@ -28,8 +28,8 @@
   margin-right: 0px;
 }
 .PWHI_Active {
-    border-bottom: 2px solid #FFFFFF;
+  border-bottom: 2px solid #ffffff;
 }
-.ProjectWorksHeader__Item:hover{
-    border-bottom: 2px solid #FFFFFF;
+.ProjectWorksHeader__Item:hover {
+  border-bottom: 2px solid #ffffff;
 }

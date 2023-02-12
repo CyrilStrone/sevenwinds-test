@@ -1,17 +1,3 @@
-.ProjectWorksView {
-  background: #27272a;
-}
-.ProjectWorksView__List {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto auto;
-  width: 100%;
-  box-sizing: border-box;
-  grid-column-start: 1;
-  grid-column-end: 6;
-}
-.ProjectWorksView__List__item {
-  height: 60px !important;
-}
 .ProjectWorksViewListItem__item {
   font-family: "Roboto";
   font-style: normal;
@@ -59,12 +45,6 @@
   border-bottom: 1px solid #414144;
   min-width: 80px;
   box-sizing: border-box;
-}
-.ProjectWorksView__List__item:nth-child(6n + 6) {
-  margin-right: 20px;
-}
-.ProjectWorksView__List__item:nth-child(6n + 1) {
-  margin-left: 20px;
 }
 .ProjectWorksViewListItem__item__Level {
   font-family: "Roboto";

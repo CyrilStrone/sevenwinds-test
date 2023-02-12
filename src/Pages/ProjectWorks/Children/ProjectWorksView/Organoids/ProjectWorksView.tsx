@@ -1,12 +1,22 @@
 import { useEffect, useState } from "react";
-import { ProjectWorksViewHead } from "../Molecules/Head";
-import { ListItamTop } from "../Molecules/ListItamTop";
+
+import { ProjectWorksViewListItemTitle } from "../Molecules/ListItamTopTitle";
 import { ProjectWorksViewListItem } from "../Molecules/ListItem";
-import "../Styles/ProjectWorksView.css";
-import "../Styles/Level.css";
-import { $generalID, $ListApi, axiosInstance, setListApi } from "../../../Logics/hooks";
-import { useStore } from "effector-react";
 import { ProjectWorksViewListItemFirst } from "../Molecules/ListItemFirst";
+import { ProjectWorksViewListItemHead } from "../Molecules/ListItamTopHead";
+
+import "../Styles/ProjectWorksView.css";
+import "../Styles/ListItamTopHead.css";
+import "../Styles/ListItamTopTitle.css";
+import "../Styles/ListItem.css";
+
+import {
+  $generalID,
+  $ListApi,
+  axiosInstance,
+  setListApi,
+} from "../../../Logics/hooks";
+import { useStore } from "effector-react";
 
 export interface IProjectWorksView {
   choiseProject: number;
@@ -17,7 +27,6 @@ export interface IProjectWorksView {
 
 export const ProjectWorksView = (params: IProjectWorksView) => {
   const [checkDoubleClickID, setcheckDoubleClickID] = useState<number>(0);
-  
   const ListApi = useStore($ListApi);
   const generalID = useStore($generalID);
 
@@ -30,9 +39,11 @@ export const ProjectWorksView = (params: IProjectWorksView) => {
 
   return (
     <div className="ProjectWorksView">
-      <ProjectWorksViewHead ProjectName={"Строительно-монтажные работы"} />
+      <ProjectWorksViewListItemHead
+        ProjectName={"Строительно-монтажные работы"}
+      />
       <div className="ProjectWorksView__List">
-        <ListItamTop
+        <ProjectWorksViewListItemTitle
           ColumnnameArray={[
             "Уровень",
             "Наименование работ",
@@ -42,7 +53,7 @@ export const ProjectWorksView = (params: IProjectWorksView) => {
             "Сметная прибыль",
           ]}
         />
-        {ListApi.length !== 0 ?
+        {ListApi.length !== 0 ? (
           ListApi.map((e: any) => (
             <ProjectWorksViewListItem
               key={e.id}
@@ -52,9 +63,10 @@ export const ProjectWorksView = (params: IProjectWorksView) => {
               parentId={null}
               itemobject={e}
             />
-           
-          )) :  <ProjectWorksViewListItemFirst
-        />}
+          ))
+        ) : (
+          <ProjectWorksViewListItemFirst />
+        )}
       </div>
     </div>
   );

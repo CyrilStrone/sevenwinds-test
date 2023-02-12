@@ -1,0 +1,22 @@
+.ProjectWorksMenuListItem__Active {
+  background: #a1a1aa;
+}
+.ProjectWorksMenuListItem {
+  width: 100%;
+  display: flex;
+  height: 44px;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 22px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.ProjectWorksMenuListItem_projectName {
+  margin-left: 16px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #ffffff;
+}

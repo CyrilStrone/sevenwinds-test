@@ -22,9 +22,7 @@ export const ProjectWorksHeader = (params: IProjectWorksHeader) => {
       <div
         onClick={() => setChoise(0)}
         className={
-          choise === 0
-            ? "ProjectWorksHeader__Item"
-            : "ProjectWorksHeader__Item"
+          choise === 0 ? "ProjectWorksHeader__Item" : "ProjectWorksHeader__Item"
         }
       >
         <img src={Menu} alt="Menu" />
@@ -32,9 +30,7 @@ export const ProjectWorksHeader = (params: IProjectWorksHeader) => {
       <div
         onClick={() => setChoise(1)}
         className={
-          choise === 1
-            ? "ProjectWorksHeader__Item"
-            : "ProjectWorksHeader__Item"
+          choise === 1 ? "ProjectWorksHeader__Item" : "ProjectWorksHeader__Item"
         }
       >
         <img src={Back} alt="Back" />
@@ -45,7 +41,7 @@ export const ProjectWorksHeader = (params: IProjectWorksHeader) => {
           setChoise(2);
         }}
         className={
-            params.choise === 2
+          params.choise === 2
             ? "PWHI_Active ProjectWorksHeader__Item"
             : "ProjectWorksHeader__Item"
         }

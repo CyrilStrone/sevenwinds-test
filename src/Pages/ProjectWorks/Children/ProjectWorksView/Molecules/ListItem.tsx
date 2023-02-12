@@ -253,7 +253,7 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
 
   let level = 0;
   let lastlevel = 0;
-  
+
   useEffect(() => {
     level = 0;
     lastlevel = 0;
@@ -293,10 +293,10 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
                 "ProjectWorksViewListItem__item__Line__Block__Style-Black"
               }`}
               onMouseOver={() => {
-                setCheckHover(true);
+                checkDoubleClick == false && setCheckHover(true);
               }}
               onMouseOut={() => {
-                setCheckHover(false);
+                checkDoubleClick == false && setCheckHover(false);
               }}
             >
               <div className="ProjectWorksViewListItem__item__Line__Block__Icon__Block">
@@ -356,7 +356,7 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
             ) : (
               <input
                 type="text"
-                value={TableInfo.rowName}
+                value={TableInfo.rowName == "Название" ? "" : TableInfo.rowName}
                 onChange={(event: any) => {
                   handleTableInfo({ key: "rowName", event: event });
                 }}
@@ -388,7 +388,7 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
             ) : (
               <input
                 type="text"
-                value={TableInfo.salary}
+                value={TableInfo.salary == 0 ? "" : TableInfo.salary}
                 onChange={(event: any) => {
                   handleTableInfo({ key: "salary", event: event });
                 }}
@@ -420,7 +420,9 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
             ) : (
               <input
                 type="text"
-                value={TableInfo.equipmentCosts}
+                value={
+                  TableInfo.equipmentCosts == 0 ? "" : TableInfo.equipmentCosts
+                }
                 onChange={(event: any) => {
                   handleTableInfo({ key: "equipmentCosts", event: event });
                 }}
@@ -452,7 +454,7 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
             ) : (
               <input
                 type="text"
-                value={TableInfo.overheads}
+                value={TableInfo.overheads == 0 ? "" : TableInfo.overheads}
                 onChange={(event: any) => {
                   handleTableInfo({ key: "overheads", event: event });
                 }}
@@ -484,7 +486,11 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
             ) : (
               <input
                 type="text"
-                defaultValue={TableInfo.estimatedProfit}
+                value={
+                  TableInfo.estimatedProfit == 0
+                    ? ""
+                    : TableInfo.estimatedProfit
+                }
                 onChange={(event: any) => {
                   handleTableInfo({ key: "estimatedProfit", event: event });
                 }}
