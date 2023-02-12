@@ -305,7 +305,7 @@ export const ProjectWorksViewListItem = (params: IProjectWorksViewListItem) => {
                   alt="Add"
                   className="ProjectWorksViewListItem__item__Line__Block__Icon__Add"
                   onClick={() => {
-                    addTableInfo(params.itemobject.id);
+                    checkDoubleClick == false && addTableInfo(params.itemobject.id);
                   }}
                 />
                 {params.parentId && (
