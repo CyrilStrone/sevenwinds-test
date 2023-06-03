@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from "react-router-dom";
 import './App.css';
-import { ProjectWorks } from './Pages/ProjectWorks/Organoids/ProjectWorks';
+import { ProjectWorks } from './Pages/ProjectWorks/Organelles/ProjectWorks';
 
 function App() {
   return (

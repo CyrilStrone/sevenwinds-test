@@ -1,6 +1,6 @@
-import { ProjectWorksHeader } from "../Children/Header/Organoids/ProjectWorksHeader";
-import { ProjectWorksMenu } from "../Children/Menu/Organoids/ProjectWorksMenu";
-import { ProjectWorksView } from "../Children/ProjectWorksView/Organoids/ProjectWorksView";
+import { ProjectWorksHeader } from "../Children/Header/Organelles/ProjectWorksHeader";
+import { ProjectWorksMenu } from "../Children/Menu/Organelles/ProjectWorksMenu";
+import { ProjectWorksView } from "../Children/ProjectWorksView/Organelles/ProjectWorksView";
 import {  useState } from "react";
 import "../Styles/ProjectWorks.css";
 export interface IProjectWorks {
