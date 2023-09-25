@@ -1,0 +1,20 @@
+.ProjectWorksView {
+  background: #27272a;
+}
+.ProjectWorksView__List {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  width: 100%;
+  box-sizing: border-box;
+  grid-column-start: 1;
+  grid-column-end: 6;
+}
+.ProjectWorksView__List__item {
+  height: 60px !important;
+}
+.ProjectWorksView__List__item:nth-child(6n + 6) {
+  margin-right: 20px;
+}
+.ProjectWorksView__List__item:nth-child(6n + 1) {
+  margin-left: 20px;
+}

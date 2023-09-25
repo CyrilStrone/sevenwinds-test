@@ -1,24 +1,24 @@
-.ProjectWorks{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    height: 100%;
-    grid-template-rows: 44px  auto ;
+.ProjectWorks {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: 100%;
+  grid-template-rows: 44px auto;
 }
-.ProjectWorksHeader{
-    grid-column-start: 1;
-    grid-column-end: 5;
-    grid-row-start: 1;
-    grid-row-end: 2
+.ProjectWorksHeader {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
-.ProjectWorksMenu{
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 2;
-    grid-row-end: auto
+.ProjectWorksMenu {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: auto;
 }
-.ProjectWorksView{
-    grid-column-start: 2;
-    grid-column-end: 5;
-    grid-row-start: 2;
-    grid-row-end: auto
+.ProjectWorksView {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: auto;
 }

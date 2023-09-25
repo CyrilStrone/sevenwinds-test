@@ -1,24 +1,24 @@
 
-import {  useState } from "react";
+import { useState } from "react";
 
 import "../styles/project-works.css";
 
-import { ProjectWorksHeader } from "../childrens/header/organelles/project-works-header";
-import { ProjectWorksMenu } from "../childrens/menu/organelles/project-works-menu";
-import { ProjectWorksView } from "../childrens/view/organelles/project-works-view";
+import { ProjectWorksHeader } from "../children/header/organelles/project-works-header";
+import { ProjectWorksMenu } from "../children/menu/organelles/project-works-menu";
+import { ProjectWorksView } from "../children/view/organelles/project-works-view";
 
 export const ProjectWorks = () => {
   const CHOICE_DEFAULT = 2
-  const CHOICE__PROJECT_DEFAULT = 2
+  const CHOICE_PROJECT_DEFAULT = 2
   const [choice, setChoice] = useState<number>(CHOICE_DEFAULT);
-  const [choiceProject, setChoiceProject] = useState<number>(CHOICE__PROJECT_DEFAULT);
+  const [choiceProject, setChoiceProject] = useState<number>(CHOICE_PROJECT_DEFAULT);
 
   return (
     <div className="ProjectWorks">
-      <ProjectWorksHeader 
+      <ProjectWorksHeader
         choice={choice}
         setChoice={setChoice}
-        />
+      />
       <ProjectWorksMenu
         choice={choice}
         choiceProject={choiceProject}
