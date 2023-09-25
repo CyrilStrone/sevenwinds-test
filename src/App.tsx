@@ -1,14 +1,16 @@
-import React from 'react';
 import { Route, Routes } from "react-router-dom";
+
 import './App.css';
-import { ProjectWorks } from './Pages/ProjectWorks/Organelles/ProjectWorks';
+
+import { ProjectWorks } from "./components/project-works/organelles/project-works";
+
 
 function App() {
   return (
     <div className="App">
         <div className="App_Actual">
             <Routes>
-                <Route path="/" element={<ProjectWorks />}></Route>
+                <Route path="/" element={<ProjectWorks />}/>
             </Routes>
         </div>
     </div>
